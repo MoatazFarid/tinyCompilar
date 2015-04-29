@@ -1,4 +1,4 @@
-package Scanner;
+package compilar;
 
 import java.io.IOException;
 import java.io.StringReader;
