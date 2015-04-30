@@ -16,17 +16,11 @@ public class main {
 		/*
 		 * TEST STATEMENT FROM THE SLIDES
 		 read x; {input an integer }
-if 0 < x then { don’t compute if x <= 0 }
-fact := 1;
-repeat
-fact := fact * x;
-x := x -1
-until x = 0;
-write fact { output factorial of x }
-end
+or
+	write sum := 0 
 		 * 
 		 */
-		String myin =myinput.nextLine();
+		String myin = new String("write sum := 0");
 		ArrayList<token> token = CompScanner.Scanner(myin);
 		
 		System.out.println("Scanner Output.. ");
