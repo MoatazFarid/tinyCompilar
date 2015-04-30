@@ -1,6 +1,7 @@
 package compilar;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import compilar.tinyScanner;
 import compilar.parser;
@@ -11,8 +12,21 @@ public class main {
 		// TODO Auto-generated method stub
 		tinyScanner CompScanner = new tinyScanner();
 		parser CompParser = new parser();
-		
-		String myin = new String("read x ; write y ");
+		Scanner myinput = new Scanner(System.in);
+		/*
+		 * TEST STATEMENT FROM THE SLIDES
+		 read x; {input an integer }
+if 0 < x then { don’t compute if x <= 0 }
+fact := 1;
+repeat
+fact := fact * x;
+x := x -1
+until x = 0;
+write fact { output factorial of x }
+end
+		 * 
+		 */
+		String myin =myinput.nextLine();
 		ArrayList<token> token = CompScanner.Scanner(myin);
 		
 		System.out.println("Scanner Output.. ");
