@@ -8,18 +8,20 @@ public class tinyScanner {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		String myin = new String("sum := sum 1");
+		String myin = new String("sum := sum 1 ; sum");
 		// testin the scanner 
 		List<token> list = new ArrayList<token>();
 		list = Scanner(myin);
 		for (token temp : list) {
-			System.out.println(temp.tockenValue);
-			System.out.println(temp.tokenType);
+			System.out.println(temp.getTokenValue());
+			System.out.println(temp.getTokenType());
 		}
 		
 		// end testing the scanner
 
 	}
+	
+	
 	// enum contain the states 
 	//enum States {START ,INNUM ,INID, INASSIGN , INCOMMENT, DONE };
 	static boolean isRepeated(StringBuilder result , ArrayList<token> token_Bank){
@@ -178,127 +180,10 @@ public class tinyScanner {
 		return false;
 	}
 	
-//	public static void TinyScanner_with_repetation(String expression) throws IOException{
-//		int character = 0;
-//		ArrayList<String> tokens = new ArrayList<String>();
-//		// current state
-//		int current_state =0;
-//		int next_state = 0;
-//		boolean comment =false;
-//		
-//		//fill all array with false value 
-//		//Arrays.fill(tokens, Boolean.FALSE);
-//		// a string is cutted to char 
-//		StringReader s = new StringReader(expression);
-//		StringBuilder result = new StringBuilder();
-//		while(character < (expression.length()+1) ){
-//			char c = (char) s.read();
-//			current_state = next_state;
-//			if( (current_state==0)&&(c == ' ')){
-//				next_state= 0;
-//				
-//			}else if((current_state == 0)&&(c == '{')){
-//				next_state = 4;
-//				result.append(c);
-//				comment=true;
-//				
-//			}else if((current_state == 4)&&(c=='}')){
-//				next_state = 0;
-//				result.append(c);
-//			}
-//			else if((current_state == 4)&&(c!='}')){
-//				next_state = 4;
-//				result.append(c);
-//			}
-//			else if((current_state == 0)&&(c >='0' && c<='9')){
-//				next_state = 1;
-//				result.append(c);
-//			}
-//			else if((current_state == 0)&&((c >='a' && c<='z')||(c>='A' && c<='Z')) ){
-//				next_state = 2;
-//				result.append(c);
-//			}
-//			else if((current_state == 0)&&(c==':')){
-//				next_state= 3;
-//				result.append(c);
-//			}
-//			else if((current_state == 0)&&((c!=':')&&(c !=' ') && !(c >='0' && c<='9')&& !((c >='a' && c<='z')||(c>='A' && c<='Z')))){
-//				next_state = 5;
-//				if(comment){
-//					if(!isRepeated(result, tokens))
-//					{	
-//						tokens.add(result.toString());
-//						{System.out.println(result + "\t" + "==> INCOMMENT");}
-//						
-//					}
-//					comment= false;
-//					result = new StringBuilder();
-//					next_state = 0;
-//				}else{
-//					if(!isRepeated(result, tokens)){
-//						tokens.add(result.toString());
-//						System.out.println(result + "\t" + "==> SPACE");
-//					}
-//					result = new StringBuilder();
-//					next_state = 0;
-//				}
-//			}
-//			else if((current_state == 1)&&(c >='0' && c<='9')){
-//				next_state =1;
-//				result.append(c);
-//
-//			}
-//			else if((current_state == 1)&& !(c >='0' && c<='9')){
-//				next_state =5;
-//				if(!isRepeated(result, tokens)){
-//					tokens.add(result.toString());
-//					System.out.println(result + "\t" + "==> INNUM");
-//				}
-//				result = new StringBuilder();
-//				next_state = 0;
-//			}
-//			else if((current_state == 2)&&((c >='a' && c<='z')||(c>='A' && c<='Z'))){
-//				next_state =2;
-//				result.append(c);
-//			}
-//			else if((current_state == 2)&& !((c >='a' && c<='z')||(c>='A' && c<='Z'))){
-//				next_state =5;
-//				if(!isRepeated(result, tokens)){
-//					tokens.add(result.toString());
-//					System.out.println(result + "\t" + "==> INID");
-//				}
-//				result = new StringBuilder();
-//				next_state =0;
-//
-//			}
-//			else if((current_state == 3)&& (c =='=')){
-//				next_state =5 ;
-//				result.append(c);
-//				if(!isRepeated(result, tokens)){
-//					tokens.add(result.toString());
-//					System.out.println(result + "\t" + "==> INASSIGN");
-//				}
-//				result = new StringBuilder();
-//				next_state = 0;
-//			}
-//			else if((current_state == 3)&& (c !='=')){
-//				next_state=5;
-//				if(!isRepeated(result, tokens)){
-//					tokens.add(result.toString());
-//					System.out.println(result + "\t" + "==> INASSIGN");
-//				}
-//				result = new StringBuilder();
-//				next_state = 0;
-//			}else{
-//				System.out.println("OTHER");
-//			}
-//			character++;
-//		}
-//	}
-	
-	public static ArrayList<token> Scanner(String expression) throws IOException{
+	 /*
+	public static void TinyScanner_with_repetation(String expression) throws IOException{
 		int character = 0;
-		ArrayList<token> tokens = new ArrayList<token>();
+		ArrayList<String> tokens = new ArrayList<String>();
 		// current state
 		int current_state =0;
 		int next_state = 0;
@@ -345,6 +230,139 @@ public class tinyScanner {
 				if(comment){
 					if(!isRepeated(result, tokens))
 					{	
+						tokens.add(result.toString());
+						{System.out.println(result + "\t" + "==> INCOMMENT");}
+						
+					}
+					comment= false;
+					result = new StringBuilder();
+					next_state = 0;
+				}else{
+					if(!isRepeated(result, tokens)){
+						tokens.add(result.toString());
+						System.out.println(result + "\t" + "==> SPACE");
+					}
+					result = new StringBuilder();
+					next_state = 0;
+				}
+			}
+			else if((current_state == 1)&&(c >='0' && c<='9')){
+				next_state =1;
+				result.append(c);
+
+			}
+			else if((current_state == 1)&& !(c >='0' && c<='9')){
+				next_state =5;
+				if(!isRepeated(result, tokens)){
+					tokens.add(result.toString());
+					System.out.println(result + "\t" + "==> INNUM");
+				}
+				result = new StringBuilder();
+				next_state = 0;
+			}
+			else if((current_state == 2)&&((c >='a' && c<='z')||(c>='A' && c<='Z'))){
+				next_state =2;
+				result.append(c);
+			}
+			else if((current_state == 2)&& !((c >='a' && c<='z')||(c>='A' && c<='Z'))){
+				next_state =5;
+				if(!isRepeated(result, tokens)){
+					tokens.add(result.toString());
+					System.out.println(result + "\t" + "==> INID");
+				}
+				result = new StringBuilder();
+				next_state =0;
+
+			}
+			else if((current_state == 3)&& (c =='=')){
+				next_state =5 ;
+				result.append(c);
+				if(!isRepeated(result, tokens)){
+					tokens.add(result.toString());
+					System.out.println(result + "\t" + "==> INASSIGN");
+				}
+				result = new StringBuilder();
+				next_state = 0;
+			}
+			else if((current_state == 3)&& (c !='=')){
+				next_state=5;
+				if(!isRepeated(result, tokens)){
+					tokens.add(result.toString());
+					System.out.println(result + "\t" + "==> INASSIGN");
+				}
+				result = new StringBuilder();
+				next_state = 0;
+			}else{
+				System.out.println("OTHER");
+			}
+			character++;
+		}
+	}
+	
+	*/
+	
+	public static boolean isReserved(String temp){
+		if( temp.equals("read") ||temp.equals("write") ||temp.equals("if") ||temp.equals("then") ||temp.equals("else") ||temp.equals("end") ||temp.equals("repeat") ||temp.equals("until")){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public static ArrayList<token> Scanner(String expression) throws IOException{
+		int character = 0;
+		ArrayList<token> tokens = new ArrayList<token>();
+		// current state
+		int current_state =0;
+		int next_state = 0;
+		boolean comment =false;
+		
+		//fill all array with false value 
+		//Arrays.fill(tokens, Boolean.FALSE);
+		// a string is cutted to char 
+		StringReader s = new StringReader(expression);
+		StringBuilder result = new StringBuilder();
+		while(character < (expression.length()+1) ){
+			char c = (char) s.read();
+			current_state = next_state;
+			if( (current_state==0)&&(c == ' ')){
+				next_state= 0;
+				
+			}else if((current_state == 0)&&(c == '{')){
+				next_state = 4;
+				result.append(c);
+				comment=true;
+				
+			}else if((current_state == 4)&&(c=='}')){
+				next_state = 0;
+				result.append(c);
+			}
+			else if((current_state == 4)&&(c!='}')){
+				next_state = 4;
+				result.append(c);
+			}
+			else if((current_state == 0)&&(c >='0' && c<='9')){
+				next_state = 1;
+				result.append(c);
+			}
+			else if((current_state == 0)&&((c >='a' && c<='z')||(c>='A' && c<='Z')) ){
+				next_state = 2;
+				result.append(c);
+			}
+			else if((current_state == 0)&&(c==':')){
+				next_state= 3;
+				result.append(c);
+			}else if((current_state == 0)&&(c==';')){
+				next_state= 5;
+				result.append(c);
+				tokens.add(new token("semicolon",result.toString()));
+				result = new StringBuilder();
+				next_state = 0;
+			}
+			else if((current_state == 0)&&((c!=':')&&(c !=' ') && !(c >='0' && c<='9')&& !((c >='a' && c<='z')||(c>='A' && c<='Z')))){
+				next_state = 5;
+				if(comment){
+					if(!isRepeated(result, tokens))
+					{	
 						//tokens.add(result.toString());
 						tokens.add(new token("INCOMMENT",result.toString()));
 
@@ -373,7 +391,7 @@ public class tinyScanner {
 				next_state =5;
 				if(!isRepeated(result, tokens)){
 					//tokens.add(result.toString());
-					tokens.add(new token("INNUM",result.toString()));
+					tokens.add(new token("number",result.toString()));
 
 					//System.out.println(result + "\t" + "==> INNUM");
 				}
@@ -387,8 +405,13 @@ public class tinyScanner {
 			else if((current_state == 2)&& !((c >='a' && c<='z')||(c>='A' && c<='Z'))){
 				next_state =5;
 				if(!isRepeated(result, tokens)){
-					//tokens.add(result.toString());
-					tokens.add(new token("INID",result.toString()));
+					
+					// check if it is a reserved word or not 
+					if(isReserved(result.toString())){
+						tokens.add(new token("reserved",result.toString(),true));
+					}else{
+						tokens.add(new token("identifier",result.toString(),false));
+					}
 
 					//System.out.println(result + "\t" + "==> INID");
 				}
@@ -401,7 +424,7 @@ public class tinyScanner {
 				result.append(c);
 				if(!isRepeated(result, tokens)){
 //					tokens.add(result.toString());
-					tokens.add(new token("INASSIGN",result.toString()));
+					tokens.add(new token("assign",result.toString()));
 
 					//System.out.println(result + "\t" + "==> INASSIGN");
 				}
@@ -412,14 +435,15 @@ public class tinyScanner {
 				next_state=5;
 				if(!isRepeated(result, tokens)){
 					//tokens.add(result.toString());
-					tokens.add(new token("INASSIGN",result.toString()));
+					tokens.add(new token("assign",result.toString()));
 
 					//System.out.println(result + "\t" + "==> INASSIGN");
 				}
 				result = new StringBuilder();
 				next_state = 0;
-			}else{
-				System.out.println("OTHER");
+			}else if( (current_state == 0)&&!((c=='{')||(c >='a' && c<='z')||(c>='A' && c<='Z')||(c >='0' && c<='9')||(c==' ') ) ){
+				result.append(c);
+				tokens.add(new token("OTHER",result.toString()));
 			}
 			character++;
 		}
