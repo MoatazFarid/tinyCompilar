@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import compilar.tinyScanner;
-import compilar.parser;
+import compilar.*;
 
 public class main {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		tinyScanner CompScanner = new tinyScanner();
-		parser CompParser = new parser();
+		RecursiveDesentParser CompParser = new RecursiveDesentParser();
 		Scanner myinput = new Scanner(System.in);
 		/*
 		 * TEST STATEMENT FROM THE SLIDES
