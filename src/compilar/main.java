@@ -15,12 +15,10 @@ public class main {
 		Scanner myinput = new Scanner(System.in);
 		/*
 		 * TEST STATEMENT FROM THE SLIDES
-		 read x; {input an integer }
-or
-	write sum := 0 
+		 sum := man
 		 * 
 		 */
-		String myin = new String("write sum := 0");
+		String myin = new String("sum := man");
 		ArrayList<token> token = CompScanner.Scanner(myin);
 		
 		System.out.println("Scanner Output.. ");
@@ -35,10 +33,11 @@ or
 			//System.out.println(temp);
 		}
 		System.out.println();
-		System.out.println("parser Output.. ");
+		System.out.println("LL1 parser Output.. ");
 		System.out.println("-------------------");
-		CompParser.setToken(token);
-		System.out.println(CompParser.program());
+		LL1Parser llParser = new LL1Parser(token);
+		System.out.println(LL1Parser.applyLL1());
+		System.out.println("---------------------");
 	}
 
 }

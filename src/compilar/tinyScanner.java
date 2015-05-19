@@ -375,7 +375,7 @@ public class tinyScanner {
 				}else{
 					if(!isRepeated(result, tokens)){
 						//tokens.add(result.toString());
-						tokens.add(new token("SPACE",result.toString()));
+						//tokens.add(new token("SPACE",result.toString()));
 						//System.out.println(result + "\t" + "==> SPACE");
 					}
 					result = new StringBuilder();
